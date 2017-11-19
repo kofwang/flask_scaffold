@@ -12,6 +12,8 @@ if os.environ.get('APP_CONFIG_FILE'):
 
 api = flask_restful.Api(app)
 
-## Actually setup the Api resource routing here
-from app.views.helloworld import HelloWorld
+## Setup the url resource routing here
+
+## Setup the Api resource routing here
+from app.api_views.helloworld import HelloWorld
 api.add_resource(HelloWorld, '/helloworld')
