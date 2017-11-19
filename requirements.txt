@@ -1,0 +1,8 @@
+flask
+flask-mysql
+flask-restful
+flask-uploads
+flask-script
+flask-migrate
+Flask-SQLAlchemy
+pymysql
