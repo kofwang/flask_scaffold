@@ -67,3 +67,9 @@ def init_api_url(api):
     api.add_resource(HelloWorld, '/helloworld')
 ```
 Like view routing, all you need to do is just put api routing inside init_api_url, and put your api view inside ```app/api_views/```.
+#### How to add unit test case
+All UT cases are placed in ```app/tests/```. Scaffold are using ```unittest``` as its UT framework, so you have to make sure every test case you write is following rules of ```unittest```. And we also suggest that files that put in ```app/tests``` should name with prefix ```test_```, so that test case can be discovered automatically by ```unittest```.
+#### How to write end to end test case
+TODO
+#### How to manage your static files
+TODO
