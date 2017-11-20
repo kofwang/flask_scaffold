@@ -5,7 +5,11 @@
    - ```manage.py``` # the entrance of project
    - ```requirements.txt``` # python dependency
    - ```Makefile``` # automation script
-   - ```config``` # where configuration is placed, includes config for development\staging\production
+   - ```config``` # where configuration are placed, includes config for development\staging\production
+     - ```default.py``` # where default configuration are placed
+     - ```development.py``` # where development configuration are placed
+     - ```staging.py``` # where staging configuration are placed
+     - ```production.py``` # where production configration are placed
    - ```app``` # where real application is placed
      - ```url.py``` # where router are defined, includes restful api and url
      - ```views``` # where normal views are defined
@@ -31,4 +35,35 @@ $ ./start.sh
 $ make test
 ```
 #### How to customize your flask config
-TODO
+Default configuration of Flask should be placed inside ```config/default.py```, for example: 
+```py
+...
+DEBUG = False
+SECRET_KEY = 'abcdefg'
+SESSION_TYPE = 'filesystem'
+...
+```
+```config/development.py``` are used to define configuration of development enviornment, which can overwrite ```config/default.py```
+#### How to add view routing
+View routing are defined in ```app/url.py```
+```py
+def init_view_url(app):
+    """
+    Place your www router here
+    """
+    from .views.helloworld import www_index
+    app.add_url_rule('/', 'www_index', www_index)
+    app.add_url_rule('/test/', 'www_index', www_index)
+```
+All you need to do is just put your routing inside init_view_url like the example above. Dont forget define your views inside ```app/views/```.
+#### How to add api routing
+Api routing are defined in ```app/url.py```
+```py
+def init_api_url(api):
+    """
+    Place your api router here
+    """
+    from .api_views.helloworld import HelloWorld
+    api.add_resource(HelloWorld, '/helloworld')
+```
+Like view routing, all you need to do is just put api routing inside init_api_url, and put your api view inside ```app/api_views/```.
